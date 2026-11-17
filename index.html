@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Noise">
+<meta name="theme-color" content="#0b0d10">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACj0lEQVR42u3bwW3CMBSA4YB6Q0jMwhrZhIHYhDWYiRtC1DFJSIjt9/2Hqoeemg/7xQm7w/HUSan2/gWCQ3AIDsEhOASH4BAcgkNwSHAIDsEhOASH4BAcgkNwCA4JDsEhOASH4BAcgkNwCA7BIcEhOASH4BAcgkNwCA6V1/3aw6FBGTN8wCE4BIfg0GJTJxymTjisEFYOMj76uF/77w3B0fLS8qUPOARH5bPFz+YMOCqbLTJzxqpo4HD7CofgcIYBR5sI1t4m4DArwCE4zBlw2GJ6OGRbERxKPgQp/zYEjs0egnTLPTSHI8qwWR0UONyVwFHtSxVw1P1SBRyOKd3KGgjGQYmACY45k2OQLWbPgeAI+umHwwoBx6wvANZ+TAnHMm9ffkRgK2kZx8hlAILo2woBsXC40nBM3jKgsXJ44hUJx5hPv6veMo63A4a3fWHMW3R8NIUjf5k9tYqLw9WFQ3BIcAgOwSE4BIfgEByCQ3AIDmkBHOfL7flTcKR9/P9ljBu2Am0r58vt9UpnuORJKdbMkUST+RsZSKeNNVYXOAa3HjLggACO1VYaRceR2Xq4sXKkL/nQTTI0js8Txy1TFxsFfbYCBBzmWTisKHCUvKIEWXXgmDm0Rlh14LDFwOH5HxybvHUAh8LdOcNR1pwLR+NzSdfKaf2fq2susXIIDsHhLgYOh7NwCA7VdSAGR3FvwpaDBg7zBxyCw+wCh1dJfrENweGRDRyCQwu+MABHm0Po0JdD4XAWYlvRyre1cFhR4BAcgkNwaNNZdXc4nvz7ZOUQHIJDcAgOwSE4BIfgEBwSHIJDcAgOwSE4BIfgEByCQ4JDcAgOwSE4BIfgEByCQ3AIDgkOwSE4BIfgEByqqQfOuE8m+CR1qwAAAABJRU5ErkJggg==">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACj0lEQVR42u3bwW3CMBSA4YB6Q0jMwhrZhIHYhDWYiRtC1DFJSIjt9/2Hqoeemg/7xQm7w/HUSan2/gWCQ3AIDsEhOASH4BAcgkNwSHAIDsEhOASH4BAcgkNwCA4JDsEhOASH4BAcgkNwCA7BIcEhOASH4BAcgkNwCA6V1/3aw6FBGTN8wCE4BIfg0GJTJxymTjisEFYOMj76uF/77w3B0fLS8qUPOARH5bPFz+YMOCqbLTJzxqpo4HD7CofgcIYBR5sI1t4m4DArwCE4zBlw2GJ6OGRbERxKPgQp/zYEjs0egnTLPTSHI8qwWR0UONyVwFHtSxVw1P1SBRyOKd3KGgjGQYmACY45k2OQLWbPgeAI+umHwwoBx6wvANZ+TAnHMm9ffkRgK2kZx8hlAILo2woBsXC40nBM3jKgsXJ44hUJx5hPv6veMo63A4a3fWHMW3R8NIUjf5k9tYqLw9WFQ3BIcAgOwSE4BIfgEByCQ3AIDmkBHOfL7flTcKR9/P9ljBu2Am0r58vt9UpnuORJKdbMkUST+RsZSKeNNVYXOAa3HjLggACO1VYaRceR2Xq4sXKkL/nQTTI0js8Txy1TFxsFfbYCBBzmWTisKHCUvKIEWXXgmDm0Rlh14LDFwOH5HxybvHUAh8LdOcNR1pwLR+NzSdfKaf2fq2susXIIDsHhLgYOh7NwCA7VdSAGR3FvwpaDBg7zBxyCw+wCh1dJfrENweGRDRyCQwu+MABHm0Po0JdD4XAWYlvRyre1cFhR4BAcgkNwaNNZdXc4nvz7ZOUQHIJDcAgOwSE4BIfgEBwSHIJDcAgOwSE4BIfgEByCQ4JDcAgOwSE4BIfgEByCQ3AIDgkOwSE4BIfgEByqqQfOuE8m+CR1qwAAAABJRU5ErkJggg==">
+<title>Noise Timer</title>
+<style>
+  :root { --bg:#0b0d10; --card:#14181d; --line:#232a31; --fg:#d8dee4; --dim:#7d8792; --acc:#d9a35b; }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body { margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif; }
+  body { padding: calc(env(safe-area-inset-top) + 20px) 18px calc(env(safe-area-inset-bottom) + 24px); }
+  main { max-width:440px; margin:0 auto; }
+  h1 { font-size:20px; font-weight:600; margin:0 0 4px; }
+  .sub { color:var(--dim); font-size:14px; margin:0 0 20px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; margin-bottom:14px; }
+  .row { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  .row + .row { margin-top:14px; }
+  label { font-size:15px; }
+  .val { color:var(--acc); font-variant-numeric:tabular-nums; min-width:44px; text-align:right; }
+  input[type=range] { width:100%; margin-top:8px; accent-color:var(--acc); }
+  input[type=time], input[type=number], select {
+    background:#0f1317; color:var(--fg); border:1px solid var(--line); border-radius:10px;
+    padding:8px 10px; font:inherit; font-size:16px; }
+  input[type=number] { width:76px; text-align:right; }
+  .seg { display:flex; background:#0f1317; border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .seg button { flex:1; background:none; border:0; color:var(--dim); font:inherit; font-size:14px; padding:8px 0; }
+  .seg button.on { background:var(--line); color:var(--fg); }
+  .go { width:100%; padding:16px; border:0; border-radius:14px; font:inherit; font-size:18px; font-weight:600;
+    background:var(--acc); color:#1a1206; }
+  .go.stop { background:#3a2a2a; color:#f0c9c9; }
+  .status { text-align:center; margin-top:18px; min-height:70px; }
+  .big { font-size:34px; font-variant-numeric:tabular-nums; font-weight:300; }
+  .small { color:var(--dim); font-size:13px; }
+  .bar { height:6px; background:var(--line); border-radius:3px; margin-top:10px; overflow:hidden; }
+  .bar i { display:block; height:100%; width:0; background:var(--acc); transition:width .5s; }
+  .ghost { background:none; border:1px solid var(--line); color:var(--dim); border-radius:10px; padding:7px 12px; font:inherit; font-size:14px; }
+  details { color:var(--dim); font-size:13px; margin-top:20px; }
+  details p { margin:8px 0; }
+  .locked .card { opacity:.45; pointer-events:none; }
+</style>
+</head>
+<body>
+<main id="app">
+  <h1>Noise Timer</h1>
+  <p class="sub">Steady noise until a set time, then a ramp up to a second level.</p>
+
+  <div class="card">
+    <div class="row"><label>Noise</label>
+      <div class="seg" id="color">
+        <button data-c="white">White</button><button data-c="pink">Pink</button><button data-c="brown">Brown</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="row"><label for="v1">Start volume</label><span class="val" id="v1o"></span></div>
+    <input type="range" id="v1" min="0" max="100" step="1">
+    <div class="row" style="margin-top:6px"><span class="small">Preview a level while stopped</span>
+      <button class="ghost" id="pv1">Preview</button></div>
+  </div>
+
+  <div class="card">
+    <div class="row"><label for="t">Escalate at</label><input type="time" id="t"></div>
+    <div class="row"><label for="ramp">Ramp length (min)</label><input type="number" id="ramp" min="1" max="120" inputmode="numeric"></div>
+  </div>
+
+  <div class="card">
+    <div class="row"><label for="v2">End volume</label><span class="val" id="v2o"></span></div>
+    <input type="range" id="v2" min="0" max="100" step="1">
+    <div class="row" style="margin-top:6px"><span class="small">Holds at this level until you stop it</span>
+      <button class="ghost" id="pv2">Preview</button></div>
+  </div>
+
+  <button class="go" id="go">Start</button>
+
+  <div class="status" id="status"></div>
+
+  <details>
+    <summary>iPhone tips</summary>
+    <p>Keep the page open. The app asks iOS to keep the screen awake; turn brightness all the way down and lay the phone face-down. If the screen locks or you switch apps, iOS may pause the audio.</p>
+    <p>The ringer switch can mute web audio on some iOS versions. If you hear nothing, flip it off silent.</p>
+    <p>Volume here is relative to the phone's volume buttons. Set the phone volume so 100% here is the loudest you'd ever want.</p>
+    <p>Sliders use a decibel scale (100% = full, each 10 points is about 5 dB), so the ramp sounds even rather than jumping at the end.</p>
+  </details>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem('nt_' + k); return v === null ? d : JSON.parse(v); } catch { return d; } },
+    set(k, v) { try { localStorage.setItem('nt_' + k, JSON.stringify(v)); } catch {} }
+  };
+
+  // ---------- settings ----------
+  const s = {
+    color: store.get('color', 'pink'),
+    v1: store.get('v1', 45),
+    v2: store.get('v2', 85),
+    t: store.get('t', '06:30'),
+    ramp: store.get('ramp', 10)
+  };
+  $('v1').value = s.v1; $('v2').value = s.v2; $('t').value = s.t; $('ramp').value = s.ramp;
+  const paintColor = () => document.querySelectorAll('#color button').forEach(b => b.classList.toggle('on', b.dataset.c === s.color));
+  const paintVals = () => { $('v1o').textContent = s.v1 + '%'; $('v2o').textContent = s.v2 + '%'; };
+  paintColor(); paintVals();
+
+  document.querySelectorAll('#color button').forEach(b => b.onclick = () => {
+    s.color = b.dataset.c; store.set('color', s.color); paintColor();
+    if (src) { swapSource(); }
+  });
+  $('v1').oninput = e => { s.v1 = +e.target.value; store.set('v1', s.v1); paintVals(); if (previewing) setLevelNow(s.v1); };
+  $('v2').oninput = e => { s.v2 = +e.target.value; store.set('v2', s.v2); paintVals(); if (previewing) setLevelNow(s.v2); };
+  $('t').onchange = e => { s.t = e.target.value; store.set('t', s.t); };
+  $('ramp').onchange = e => { s.ramp = Math.max(1, Math.min(120, +e.target.value || 10)); e.target.value = s.ramp; store.set('ramp', s.ramp); };
+
+  // ---------- volume mapping (dB scale) ----------
+  const DB_RANGE = 50;               // 0..100 slider spans -50 dB .. 0 dB
+  const FLOOR = 0.0001;              // ramps need a positive value
+  const toGain = v => v <= 0 ? FLOOR : Math.pow(10, ((v - 100) / 100) * DB_RANGE / 20);
+
+  // ---------- audio ----------
+  let ctx = null, gain = null, src = null, previewing = false, running = false;
+  const buffers = {};
+
+  function makeBuffer(color) {
+    if (buffers[color]) return buffers[color];
+    const sr = ctx.sampleRate, len = sr * 24, xf = Math.floor(sr * 0.5);
+    const buf = ctx.createBuffer(2, len, sr);
+    for (let ch = 0; ch < 2; ch++) {
+      // generate len + xf samples of continuous noise, then fold the tail
+      // into the head so the loop point is seamless (no dip, no click)
+      const N = len + xf, d = new Float32Array(N);
+      if (color === 'white') {
+        for (let i = 0; i < N; i++) d[i] = (Math.random() * 2 - 1) * 0.5;
+      } else if (color === 'pink') {
+        // Paul Kellet's refined pink filter
+        let b0=0,b1=0,b2=0,b3=0,b4=0,b5=0,b6=0;
+        for (let i = 0; i < N; i++) {
+          const w = Math.random() * 2 - 1;
+          b0 = 0.99886*b0 + w*0.0555179; b1 = 0.99332*b1 + w*0.0750759;
+          b2 = 0.96900*b2 + w*0.1538520; b3 = 0.86650*b3 + w*0.3104856;
+          b4 = 0.55000*b4 + w*0.5329522; b5 = -0.7616*b5 - w*0.0168980;
+          d[i] = (b0+b1+b2+b3+b4+b5+b6 + w*0.5362) * 0.11; b6 = w*0.115926;
+        }
+      } else {
+        let last = 0;
+        for (let i = 0; i < N; i++) { const w = Math.random() * 2 - 1; last = (last + 0.02 * w) / 1.02; d[i] = last * 3.5; }
+      }
+      // remove DC offset
+      let mean = 0; for (let i = 0; i < N; i++) mean += d[i]; mean /= N;
+      for (let i = 0; i < N; i++) d[i] -= mean;
+      // equal-power crossfade: head fades in while the extra tail fades out,
+      // so sample len-1 flows straight into sample 0 at the loop point
+      const out = buf.getChannelData(ch);
+      for (let i = 0; i < len; i++) out[i] = d[i];
+      for (let i = 0; i < xf; i++) {
+        const a = (i / xf) * Math.PI / 2;
+        out[i] = d[i] * Math.sin(a) + d[len + i] * Math.cos(a);
+      }
+      // normalize to similar perceived loudness
+      let peak = 0; for (let i = 0; i < len; i++) peak = Math.max(peak, Math.abs(out[i]));
+      const k = (color === 'white' ? 0.5 : 0.7) / (peak || 1);
+      for (let i = 0; i < len; i++) out[i] *= k;
+    }
+    return (buffers[color] = buf);
+  }
+
+  function ensureCtx() {
+    if (ctx) return;
+    // Ask iOS to treat this as media playback (ignores ringer switch on Safari 17+)
+    try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch {}
+    ctx = new (window.AudioContext || window.webkitAudioContext)();
+    gain = ctx.createGain(); gain.gain.value = FLOOR; gain.connect(ctx.destination);
+    ctx.onstatechange = () => { if (ctx.state === 'running' && running) schedule(); };
+  }
+
+  function swapSource() {
+    const old = src;
+    src = ctx.createBufferSource(); src.buffer = makeBuffer(s.color); src.loop = true;
+    src.connect(gain); src.start();
+    if (old) { try { old.stop(ctx.currentTime + 0.05); } catch {} }
+  }
+
+  function setLevelNow(v) {
+    const g = gain.gain, now = ctx.currentTime;
+    g.cancelScheduledValues(now); g.setValueAtTime(Math.max(g.value, FLOOR), now);
+    g.exponentialRampToValueAtTime(toGain(v), now + 0.15);
+  }
+
+  // ---------- schedule ----------
+  let rampStart = 0; // wall-clock ms when ramp begins
+  function computeRampStart() {
+    const [h, m] = s.t.split(':').map(Number);
+    const d = new Date(); d.setHours(h, m, 0, 0);
+    if (d.getTime() <= Date.now() + 1000) d.setDate(d.getDate() + 1);
+    return d.getTime();
+  }
+  const rampMs = () => s.ramp * 60000;
+
+  // level (0..1 progress-based gain) at wall-clock time
+  function gainAt(ms) {
+    if (ms <= rampStart) return toGain(s.v1);
+    const p = Math.min(1, (ms - rampStart) / rampMs());
+    const g1 = toGain(s.v1), g2 = toGain(s.v2);
+    return g1 * Math.pow(g2 / g1, p);  // exponential = linear in dB
+  }
+
+  // (Re)build the gain automation from wall-clock time; safe to call any time.
+  function schedule(fadeIn) {
+    const g = gain.gain, nowA = ctx.currentTime, nowW = Date.now();
+    if (g.cancelAndHoldAtTime) g.cancelAndHoldAtTime(nowA); else g.cancelScheduledValues(nowA);
+    const cur = gainAt(nowW);
+    if (fadeIn) { g.setValueAtTime(FLOOR, nowA); g.exponentialRampToValueAtTime(cur, nowA + 3); }
+    else g.setValueAtTime(cur, nowA);
+    const base = nowA + (fadeIn ? 3 : 0);
+    const toStart = (rampStart - nowW) / 1000, toEnd = (rampStart + rampMs() - nowW) / 1000;
+    if (toStart > 0) g.setValueAtTime(toGain(s.v1), nowA + Math.max(toStart, fadeIn ? 3 : 0));
+    if (toEnd > 0) g.exponentialRampToValueAtTime(toGain(s.v2), Math.max(base, nowA + toEnd));
+  }
+
+  // ---------- wake lock ----------
+  let lock = null;
+  async function grabLock() {
+    try { if ('wakeLock' in navigator && !lock) { lock = await navigator.wakeLock.request('screen'); lock.addEventListener('release', () => lock = null); } } catch {}
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && running) {
+      grabLock();
+      if (ctx.state !== 'running') ctx.resume().catch(() => {}); else schedule();
+    }
+  });
+
+  // ---------- controls ----------
+  async function preview(which) {
+    if (running) return;
+    ensureCtx(); await ctx.resume().catch(() => {});
+    if (previewing === which) { stopAudio(); return; }
+    if (!src) swapSource();
+    previewing = which; setLevelNow(which === 1 ? s.v1 : s.v2);
+    $('pv1').textContent = which === 1 ? 'Stop' : 'Preview';
+    $('pv2').textContent = which === 2 ? 'Stop' : 'Preview';
+  }
+  $('pv1').onclick = () => preview(1);
+  $('pv2').onclick = () => preview(2);
+
+  function stopAudio() {
+    previewing = false; $('pv1').textContent = $('pv2').textContent = 'Preview';
+    if (!src) return;
+    const g = gain.gain, now = ctx.currentTime;
+    g.cancelScheduledValues(now); g.setValueAtTime(Math.max(g.value, FLOOR), now);
+    g.exponentialRampToValueAtTime(FLOOR, now + 0.6);
+    const old = src; src = null; try { old.stop(now + 0.7); } catch {}
+  }
+
+  $('go').onclick = async () => {
+    if (running) {
+      running = false; stopAudio();
+      if (lock) { try { lock.release(); } catch {} lock = null; }
+      document.body.classList.remove('locked');
+      $('go').textContent = 'Start'; $('go').classList.remove('stop'); $('status').innerHTML = '';
+      return;
+    }
+    ensureCtx();
+    try { await ctx.resume(); } catch {}
+    stopAudio(); previewing = false;
+    rampStart = computeRampStart();
+    running = true;
+    swapSource(); schedule(true); grabLock();
+    document.body.classList.add('locked');
+    $('go').textContent = 'Stop'; $('go').classList.add('stop');
+    tick();
+  };
+
+  // ---------- status + drift guard ----------
+  const fmt = ms => { const t = Math.max(0, Math.round(ms / 1000)), h = Math.floor(t / 3600), m = Math.floor(t % 3600 / 60), x = t % 60;
+    return (h ? h + ':' + String(m).padStart(2, '0') : m) + ':' + String(x).padStart(2, '0'); };
+  const levelPct = g => g <= FLOOR ? 0 : Math.round(100 + 20 * Math.log10(g) * 100 / DB_RANGE);
+  let lastResync = 0;
+  function tick() {
+    if (!running) return;
+    const now = Date.now(), end = rampStart + rampMs();
+    const at = new Date(rampStart).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    let html;
+    if (now < rampStart) {
+      html = `<div class="big">${fmt(rampStart - now)}</div><div class="small">until ramp at ${at} · holding ${s.v1}%</div>`;
+    } else if (now < end) {
+      const p = (now - rampStart) / rampMs();
+      html = `<div class="big">${levelPct(gainAt(now))}%</div><div class="small">ramping to ${s.v2}% · ${fmt(end - now)} left</div><div class="bar"><i style="width:${(p * 100).toFixed(1)}%"></i></div>`;
+    } else {
+      html = `<div class="big">${s.v2}%</div><div class="small">at end volume · tap Stop to end</div>`;
+    }
+    if (ctx && ctx.state !== 'running') html += `<div class="small" style="color:#e0a0a0;margin-top:6px">Audio paused by iOS · tap anywhere to resume</div>`;
+    $('status').innerHTML = html;
+    // resync automation to wall clock every 30 s in case the audio clock drifted or paused
+    if (now - lastResync > 30000 && ctx.state === 'running') { lastResync = now; schedule(); }
+    setTimeout(tick, 500);
+  }
+  document.addEventListener('click', () => { if (running && ctx && ctx.state !== 'running') ctx.resume().then(() => schedule()).catch(() => {}); });
+})();
+</script>
+</body>
+</html>
